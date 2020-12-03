@@ -1,37 +1,16 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
-	"strconv"
+
+	"github.com/mikezange/advent-of-code/common"
 )
 
-var ErrUnableToFind = fmt.Errorf("unable to fing target summation")
-
-func readInput(file string) ([]int, error) {
-	r, err := os.Open(file)
-	if err != nil {
-		return nil, err
-	}
-	scanner := bufio.NewScanner(r)
-	scanner.Split(bufio.ScanWords)
-	var result []int
-	for scanner.Scan() {
-		x, err := strconv.Atoi(scanner.Text())
-		if err != nil {
-			return result, err
-		}
-		result = append(result, x)
-	}
-	return result, scanner.Err()
-}
+var ErrUnableToFind = fmt.Errorf("unable to find target summation")
 
 func main() {
-	nums, err := readInput("input.txt")
-	if err != nil {
-		panic(err)
-	}
+	nums := common.ReadInts("input.txt")
 
 	multiple, err := findSummation(nums, 2020)
 	if err != nil {
