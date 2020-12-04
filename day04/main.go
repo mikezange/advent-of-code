@@ -59,8 +59,8 @@ func (p passport) isValidPart2() bool {
 		"eyr": regexp.MustCompile(`202\d|2030`),
 		"hgt": regexp.MustCompile(`(1[5-8]\d|19[0-3])cm|(59|6\d|7[0-6])in`),
 		"hcl": regexp.MustCompile(`#[\da-f]{6}`),
-		"ecl": regexp.MustCompile(`(amb|blu|brn|gry|grn|hzl|oth)`),
-		"pid": regexp.MustCompile(`(\d{9})`),
+		"ecl": regexp.MustCompile(`amb|blu|brn|gry|grn|hzl|oth`),
+		"pid": regexp.MustCompile(`\d{9}`),
 	}
 
 	for key, value := range p {
