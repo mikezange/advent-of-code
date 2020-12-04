@@ -2,6 +2,7 @@ package common
 
 import (
 	"bufio"
+	"io/ioutil"
 	"os"
 	"strconv"
 )
@@ -31,4 +32,8 @@ func ReadInts(file string) []int {
 		ints = append(ints, x)
 	}
 	return ints
+}
+
+func ReadWholeFile(file string) ([]byte, error) {
+	return ioutil.ReadFile(file)
 }
