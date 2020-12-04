@@ -3,3 +3,6 @@ build:
 
 run: build
 	cd ./day$(day) && ./main && rm -rf ./main
+
+new:
+	mkdir ./day$(day)
