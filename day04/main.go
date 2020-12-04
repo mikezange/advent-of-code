@@ -48,6 +48,10 @@ func (p passport) isValid() bool {
 }
 
 func (p passport) isValidPart2() bool {
+	if !p.isValid() {
+		return false
+	}
+
 	delete(p, "cid")
 	rules := map[string]*regexp.Regexp{
 		"byr": regexp.MustCompile(`(19[2-9]\d)|(200[0-2])`),
@@ -60,9 +64,14 @@ func (p passport) isValidPart2() bool {
 	}
 
 	for key, value := range p {
+		if key == "pid" && len(value) > 9 {
+			return false
+		}
+
 		if !rules[key].MatchString(value) {
 			return false
 		}
+
 	}
 
 	return true
