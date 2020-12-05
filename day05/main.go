@@ -16,9 +16,13 @@ func main() {
 
 	var ids []int
 	for _, entry := range entries {
-		ids = append(ids, getId(entry))
+		binStr := replacer.Replace(entry)
+		id, _ := strconv.ParseInt(binStr, 2, 0)
+		ids = append(ids, int(id))
 	}
 	sort.Ints(ids)
+
+	fmt.Println(ids[len(ids)-1])
 
 	for i := 0; i < len(ids); i++ {
 		if ids[i+1] != ids[i]+1 {
@@ -26,10 +30,4 @@ func main() {
 			break
 		}
 	}
-}
-
-func getId(entry string) int {
-	binStr := replacer.Replace(entry)
-	id, _ := strconv.ParseInt(binStr, 2, 0)
-	return int(id)
 }
